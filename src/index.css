@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-base: #f8fafc;
+    --bg-card: rgba(255, 255, 255, 0.85);
+    --bg-card-hover: #ffffff;
+    --border-subtle: rgba(15, 23, 42, 0.08);
+    --border-accent: rgba(99, 102, 241, 0.3);
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-tertiary: #64748b;
+  }
+
+  html {
+    color-scheme: light;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #f8fafc;
+    color: #0f172a;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #f8fafc;
+    background-image: 
+      radial-gradient(circle at 15% 10%, rgba(99, 102, 241, 0.06) 0%, transparent 45%),
+      radial-gradient(circle at 85% 25%, rgba(14, 165, 233, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 50% 65%, rgba(244, 63, 94, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 85%, rgba(16, 185, 129, 0.04) 0%, transparent 40%);
+    background-attachment: fixed;
+  }
+
+  #root {
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  /* Calm Precision Scrollbar */
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.5);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.6);
+  }
+}
+
+/* Typography Classes */
+.font-mono-tech {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.font-display {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.font-editorial {
+  font-family: 'Newsreader', serif;
+}
+
+/* Subtle Serene Grid Background */
+.tech-grid-bg {
+  background-size: 36px 36px;
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+}
+
+.tech-dots-bg {
+  background-size: 24px 24px;
+  background-image: radial-gradient(circle, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+}
+
+/* Calm Porcelain Glass Panels */
+.cyber-panel {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(15, 23, 42, 0.07);
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.04), 0 0 1px 1px rgba(15, 23, 42, 0.02);
+}
+
+.cyber-panel-hover {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cyber-panel-hover:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 20px 35px -12px rgba(99, 102, 241, 0.12), 0 0 1px 1px rgba(99, 102, 241, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Serene Corner Accents */
+.hud-corner-tl {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid #6366f1;
+  border-left: 2px solid #6366f1;
+  border-top-left-radius: 6px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.hud-corner-br {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-bottom: 2px solid #6366f1;
+  border-right: 2px solid #6366f1;
+  border-bottom-right-radius: 6px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Subtle Glowing Accents */
+.glow-cyan {
+  text-shadow: 0 0 16px rgba(14, 165, 233, 0.4);
+}
+
+.glow-indigo {
+  text-shadow: 0 0 16px rgba(99, 102, 241, 0.4);
+}
+
+.glow-box-cyan {
+  box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.2);
+}
+
+/* Soft Pulsing Beacon */
+@keyframes beacon {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.92); }
+}
+
+.animate-beacon {
+  animation: beacon 2.4s ease-in-out infinite;
+}
+
+
