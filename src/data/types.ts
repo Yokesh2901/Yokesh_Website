@@ -1,4 +1,4 @@
-﻿export interface Project {
+export interface Project {
   id: string;
   number: string;
   title: string;
@@ -14,7 +14,7 @@
   architecture?: string[];
   github?: string;
   demo?: string;
-  interactiveType: 'blast-furnace' | 'voice-viki' | 'hand-gesture' | 'agent-cron' | 'downtime-stream' | 'movie-rating' | 'employee-scoring' | 'trading' | 'game' | 'desktop-pet';
+  interactiveType: 'blast-furnace' | 'voice-viki' | 'hand-gesture' | 'agent-cron' | 'downtime-stream' | 'movie-rating' | 'employee-scoring' | 'trading' | 'game' | 'desktop-pet' | 'agent-shield';
 }
 
 export interface SkillItem {

@@ -1,11 +1,15 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ShieldAlert, PhoneCall, Hand, Bot, Activity } from 'lucide-react';
+import { soundManager } from '../../utils/audio';
 
 interface VisualizerProps {
   interactiveType: string;
 }
 
 export const ProjectVisualizer: React.FC<VisualizerProps> = ({ interactiveType }) => {
+  if (interactiveType === 'agent-shield') {
+    return <AgentShieldVisualizer />;
+  }
   if (interactiveType === 'blast-furnace') {
     return <BlastFurnaceScanner />;
   }
@@ -19,6 +23,161 @@ export const ProjectVisualizer: React.FC<VisualizerProps> = ({ interactiveType }
     return <AgentCronVisualizer />;
   }
   return <TelemetryVisualizer type={interactiveType} />;
+};
+
+// 0. AgentShield — Zero-Trust AI Agent Security & Action Governance
+const AgentShieldVisualizer: React.FC = () => {
+  const [activeScenario, setActiveScenario] = useState(0);
+
+  const scenarios = [
+    {
+      agent: "Autonomous-Agent-09",
+      target: "PostgreSQL Prod",
+      tool: "db.execute_sql",
+      payload: 'DROP TABLE customers_prod WHERE 1=1;',
+      riskScore: 99,
+      status: "BLOCKED",
+      invariant: "Non-Admin + Production DELETE = Mandatory Block",
+      latency: "11.4ms",
+      reason: "Destructive DDL detected. Absolute policy invariant triggered.",
+      auditId: "ASH-9041"
+    },
+    {
+      agent: "FinOps-Worker",
+      target: "Stripe API v1",
+      tool: "stripe.transfers.create",
+      payload: '{ amount: 50000, recipient: "external_wallet_0x" }',
+      riskScore: 92,
+      status: "BLOCKED",
+      invariant: "Disallowed Action: Single Transfer > $1,000 threshold",
+      latency: "14.8ms",
+      reason: "Exceeds autonomous payment limit. Human escalation required.",
+      auditId: "ASH-9042"
+    },
+    {
+      agent: "DevOps-Assistant",
+      target: "Linux File System",
+      tool: "fs.read_file",
+      payload: 'cat /etc/shadow || cat .env.production',
+      riskScore: 97,
+      status: "BLOCKED",
+      invariant: "Host Security: Root secrets & credential path access prohibited",
+      latency: "9.6ms",
+      reason: "Attempted credential / environment variable extraction.",
+      auditId: "ASH-9043"
+    },
+    {
+      agent: "Research-Summarizer",
+      target: "Internal Vector DB",
+      tool: "vector.similarity_search",
+      payload: '{ collection: "knowledge_base", top_k: 5 }',
+      riskScore: 6,
+      status: "PERMITTED",
+      invariant: "Idempotent Read Operation: Clean policy pass",
+      latency: "12.1ms",
+      reason: "Safe vector read validated by Laya Decision Engine.",
+      auditId: "ASH-9044"
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveScenario((prev) => (prev + 1) % 4);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const cur = scenarios[activeScenario];
+  const isBlocked = cur.status === "BLOCKED";
+
+  return (
+    <div className="w-full h-full min-h-[220px] bg-slate-50/90 rounded-2xl border border-slate-200 p-4 relative flex flex-col justify-between overflow-hidden">
+      {/* Header */}
+      <div className="flex items-center justify-between text-[11px] font-mono-tech border-b border-slate-200 pb-2">
+        <div className="flex items-center gap-1.5 text-indigo-700 font-semibold">
+          <ShieldAlert className="w-3.5 h-3.5 text-indigo-600" />
+          <span>AGENTSHIELD // DECISION FIREWALL</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 text-[10px]">
+            ⚡ {cur.latency} (Sub-20ms)
+          </span>
+          <span className="text-slate-500 font-medium text-[10px] hidden sm:inline">FASTAPI GATEWAY</span>
+        </div>
+      </div>
+
+      {/* Simulator Sandbox Terminal Console */}
+      <div className="my-2 bg-slate-900 rounded-xl p-3 border border-slate-800 text-slate-100 font-mono-tech text-[10px] space-y-2 shadow-inner">
+        <div className="flex items-center justify-between border-b border-slate-800 pb-1.5 text-[9px] text-slate-400">
+          <div className="flex items-center gap-1.5">
+            <span className={`inline-block w-2 h-2 rounded-full ${isBlocked ? 'bg-rose-500 animate-pulse' : 'bg-emerald-500'}`} />
+            <span className="text-slate-200 font-semibold">{cur.agent}</span>
+            <span className="text-slate-500">→</span>
+            <span className="text-cyan-400">{cur.target}</span>
+          </div>
+          <span className="text-slate-400">SOC2 #{cur.auditId}</span>
+        </div>
+
+        {/* Intercepted Tool Action */}
+        <div className="bg-slate-950/90 rounded-lg p-2 border border-slate-800/80">
+          <div className="text-[9px] text-slate-400 flex items-center justify-between mb-0.5">
+            <span className="text-indigo-400 font-bold">INTERCEPTED TOOL:</span>
+            <span className="text-amber-400 font-semibold">{cur.tool}</span>
+          </div>
+          <div className="text-emerald-400 text-[10px] font-mono truncate">
+            {cur.payload}
+          </div>
+        </div>
+
+        {/* Risk Assessment & Invariant Decision */}
+        <div className="flex items-center justify-between pt-0.5 gap-2">
+          <div className="flex items-center gap-1.5">
+            <span className="text-[9px] text-slate-400">RISK SCORE:</span>
+            <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+              isBlocked ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+            }`}>
+              {cur.riskScore} / 100
+            </span>
+          </div>
+
+          <div className={`px-2.5 py-0.5 rounded text-[9px] font-bold tracking-wide flex items-center gap-1 ${
+            isBlocked ? 'bg-rose-600 text-white shadow-xs' : 'bg-emerald-600 text-white shadow-xs'
+          }`}>
+            <span>{isBlocked ? '🛡️ INVARIANT BLOCKED' : '✓ ACTION PERMITTED'}</span>
+          </div>
+        </div>
+
+        <div className="text-[9px] text-slate-400 truncate">
+          <span className="text-slate-300 font-semibold">Invariant:</span> {cur.invariant}
+        </div>
+      </div>
+
+      {/* Simulator Scenario Selectors */}
+      <div className="flex items-center justify-between gap-1.5 pt-1">
+        <span className="text-[9px] font-mono-tech text-slate-500 font-bold uppercase hidden sm:inline">
+          AUTONOMOUS SIMULATOR:
+        </span>
+        <div className="grid grid-cols-4 gap-1 w-full sm:w-auto flex-1 sm:flex-initial">
+          {scenarios.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => {
+                soundManager.playSwitch();
+                setActiveScenario(idx);
+              }}
+              className={`px-2 py-1 rounded text-[9px] font-mono-tech font-bold transition-all border truncate cursor-pointer ${
+                activeScenario === idx
+                  ? 'bg-slate-900 border-slate-900 text-white shadow-2xs'
+                  : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-100'
+              }`}
+            >
+              Test #{idx + 1}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 // 1. Blast Furnace Hazardous Object Scanner

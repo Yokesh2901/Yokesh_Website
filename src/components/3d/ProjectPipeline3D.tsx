@@ -171,6 +171,14 @@ export const ProjectPipeline3D: React.FC<ProjectPipeline3DProps> = ({ interactiv
 
   // Derive specialized 4-stage pipeline according to project type
   const stages: StageData[] = useMemo(() => {
+    if (interactiveType === 'agent-shield') {
+      return [
+        { id: 'stg1', name: '01. Action Interceptor', sub: 'FastAPI In-Line Gateway', color: '#0284c7', xBase: -2.4, xExploded: -3.6, metric: '<20ms Latency' },
+        { id: 'stg2', name: '02. Laya Decision Engine', sub: 'Semantic Reasoning & Risk Scoring', color: '#4f46e5', xBase: -0.8, xExploded: -1.2, metric: '0–100 Scale' },
+        { id: 'stg3', name: '03. Zero-Trust Invariants', sub: 'Deterministic Policy Enforcement', color: '#f43f5e', xBase: 0.8, xExploded: 1.2, metric: 'Zero Bypass' },
+        { id: 'stg4', name: '04. Prometheus & SOC2', sub: 'Immutable Audit Logging & Dashboard', color: '#059669', xBase: 2.4, xExploded: 3.6, metric: '100% Audited' }
+      ];
+    }
     if (interactiveType === 'blast-furnace') {
       return [
         { id: 'stg1', name: '01. Raw Video Ingest', sub: 'RTSP 1080p Conveyor Stream', color: '#0284c7', xBase: -2.4, xExploded: -3.6, metric: '60 FPS Ingestion' },
@@ -179,7 +187,7 @@ export const ProjectPipeline3D: React.FC<ProjectPipeline3DProps> = ({ interactiv
         { id: 'stg4', name: '04. PLC Relay E-Stop', sub: 'Industrial Actuator Interlock', color: '#f43f5e', xBase: 2.4, xExploded: 3.6, metric: '<50ms Cutoff' }
       ];
     }
-    if (interactiveType === 'viki-voice') {
+    if (interactiveType === 'viki-voice' || interactiveType === 'voice-viki') {
       return [
         { id: 'stg1', name: '01. Deepgram Tamil ASR', sub: 'Phonetic Token Ingestion', color: '#0284c7', xBase: -2.4, xExploded: -3.6, metric: 'Nova-2 Engine' },
         { id: 'stg2', name: '02. RoBERTa Sentiment', sub: 'Urgency & Affect Classification', color: '#4f46e5', xBase: -0.8, xExploded: -1.2, metric: '0.94 Confidence' },

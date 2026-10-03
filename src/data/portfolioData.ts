@@ -1,4 +1,4 @@
-﻿import type { PortfolioData } from './types';
+import type { PortfolioData } from './types';
 
 export const portfolioData: PortfolioData = {
   personal: {
@@ -99,8 +99,42 @@ export const portfolioData: PortfolioData = {
 
   projects: [
     {
-      id: "blast-furnace-safety",
+      id: "agent-shield",
       number: "01",
+      title: "AgentShield — AI Agent Security & Action Governance Platform",
+      subtitle: "A zero-trust decision firewall protecting enterprise databases and APIs from autonomous AI agent hallucinations and prompt injection.",
+      category: "VOICE_AI_AGENTS",
+      categoryLabel: "AI Agent Security & Action Governance",
+      featured: true,
+      technologies: ["FastAPI", "Python", "Laya AI Engine", "Prometheus", "React", "Tailwind CSS", "Zero-Trust Policies", "Docker", "SOC2 Logging"],
+      problem: "As AI agents gain autonomous access to production tools—databases, payment gateways, file systems, and emails—a single hallucination or prompt injection can lead to irreversible corporate damage, unauthorized data exfiltration, or catastrophic database deletion.",
+      approach: [
+        "Architected an in-line asynchronous decision firewall built on FastAPI achieving sub-20ms interception latency before any tool code executes.",
+        "Engineered the Laya AI Decision Engine to apply semantic reasoning and compute transparent 0–100 risk scores on incoming agent intent.",
+        "Enforced deterministic, mathematically sound Zero-Trust security invariants (e.g., Non-Admin + Production DELETE = Mandatory Block) that can never be bypassed by LLM hallucinations.",
+        "Built comprehensive observability with real-time Prometheus telemetry, immutable audit logging for SOC2 compliance, and a high-performance React/Tailwind analytics dashboard.",
+        "Developed the Autonomous Agent Simulator, an interactive sandbox for AI developers to test agent workflows and verify firewall behavior before live deployment."
+      ],
+      result: "Delivered a sub-20ms enterprise action governance platform providing absolute mathematical policy guarantees and full SOC2 audit readiness against rogue agent actions.",
+      metrics: [
+        "Sub-20ms Interception Latency via async FastAPI gateway",
+        "Zero-Trust Security Invariants (Mathematical policy guarantees)",
+        "Prometheus real-time metrics & immutable SOC2 audit logging",
+        "Autonomous Agent Simulator interactive testing sandbox"
+      ],
+      architecture: [
+        "FastAPI In-Line Action Interception Gateway (<20ms)",
+        "Laya AI Decision Engine (Semantic Reasoning & 0–100 Risk Scoring)",
+        "Zero-Trust Invariant Engine (Deterministic Policy Enforcement)",
+        "Prometheus Metrics & Immutable SOC2 Audit Logging",
+        "React / Tailwind Real-Time Analytics Dashboard & Simulator"
+      ],
+      github: "https://github.com/Yokesh2901",
+      interactiveType: "agent-shield"
+    },
+    {
+      id: "blast-furnace-safety",
+      number: "02",
       title: "Hazardous Substance Detection for Blast Furnace Safety",
       subtitle: "Client-sponsored computer vision system catching explosive sealed items in scrap metal streams",
       category: "FLAGSHIP_DL_CV",
@@ -132,7 +166,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: "viki-voice-assistant",
-      number: "02",
+      number: "03",
       title: "VIKI — Tamil AI Voice Assistant",
       subtitle: "Conversational Tamil voice agent with LLM reasoning, sentiment scoring, and telephony routing",
       category: "VOICE_AI_AGENTS",
@@ -164,7 +198,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: "hand-gesture-control",
-      number: "03",
+      number: "04",
       title: "Hand Gesture System Control",
       subtitle: "Real-time OS navigation using MediaPipe 21-landmark tracking and Kalman filter smoothing",
       category: "FLAGSHIP_DL_CV",
@@ -176,7 +210,7 @@ export const portfolioData: PortfolioData = {
         "Employed MediaPipe's HandLandmarker to track 21 three-dimensional skeletal coordinates in real-time camera frames.",
         "Combined YOLOv8 hand detection with landmark tracking, mapping distinct finger-tip geometric configurations to cursor motion, left/right clicks, scrolling, and system volume.",
         "Engineered a Kalman-filter and exponential-smoothing utility layer that mathematically dampened high-frequency spatial noise, producing buttery cursor movement.",
-        "Designed a finite state machine with strict activation gestures (open-hand to activate, closed fist to pause) to eliminate unintentional inputs."
+        "Designed a finite state machine with strict activation gestures (open-hand to activate, closed fist to pause) to eliminate unintentional inputs.",
       ],
       result: "Delivered an intuitive, zero-jitter touchless OS control interface operating smoothly on standard consumer webcams without dedicated depth hardware.",
       metrics: [
@@ -196,7 +230,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: "studcatalyst-agent",
-      number: "04",
+      number: "05",
       title: "StudCatalyst — Autonomous GitHub-to-Instagram Agent",
       subtitle: "Scheduled pipeline analyzing repositories, rendering headless UI slides, and publishing carousels",
       category: "VOICE_AI_AGENTS",
@@ -228,7 +262,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: "cnc-downtime-prediction",
-      number: "05",
+      number: "06",
       title: "CNC Machine Downtime Prediction",
       subtitle: "Predictive industrial maintenance model forecasting equipment downtime from sensor streams",
       category: "DATA_SCIENCE_ML",
@@ -251,7 +285,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: "movie-audience-rating-predictor",
-      number: "06",
+      number: "07",
       title: "Movie Audience Rating Predictor",
       subtitle: "End-to-end Decision Tree classification pipeline predicting Rotten Tomatoes audience reception",
       category: "DATA_SCIENCE_ML",
@@ -274,7 +308,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: "employee-performance-scoring",
-      number: "07",
+      number: "08",
       title: "Employee Performance Scoring System",
       subtitle: "Analytics application measuring operational productivity and quality metrics for Amazon operations",
       category: "DATA_SCIENCE_ML",
@@ -297,7 +331,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: "algorithmic-trading-strategies",
-      number: "08",
+      number: "09",
       title: "Quantitative Algorithmic Trading Strategies",
       subtitle: "Custom TradingView backtesting indicators including Antigravity and 5-minute intraday signals",
       category: "FULL_STACK_QUANT",
@@ -319,7 +353,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: "job-hunter-india",
-      number: "09",
+      number: "10",
       title: "Job Hunter India — Indie Browser Game",
       subtitle: "Pixel-art satirical browser game with custom client-side router and Web Audio API synthesizer",
       category: "FULL_STACK_QUANT",
@@ -341,7 +375,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: "aether-and-multimango",
-      number: "10",
+      number: "11",
       title: "Aether Desktop Companion & MultiMango Tracker",
       subtitle: "Interactive 22-state desktop dragon pet with GSAP particle engine & productivity browser extension",
       category: "FULL_STACK_QUANT",

@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { SectionHeading } from '../common/SectionHeading';
 import { portfolioData } from '../../data/portfolioData';
 import type { Project } from '../../data/types';
@@ -18,7 +18,7 @@ export const ProjectsShowcase: React.FC<ProjectsShowcaseProps> = ({
   const [activeFilter, setActiveFilter] = useState<string>('ALL');
 
   const filterTabs = [
-    { id: 'ALL', label: 'ALL SYSTEMS (10)' },
+    { id: 'ALL', label: `ALL SYSTEMS (${portfolioData.projects.length})` },
     { id: 'FLAGSHIP_DL_CV', label: 'DEEP LEARNING & CV' },
     { id: 'VOICE_AI_AGENTS', label: 'VOICE AI & AGENTS' },
     { id: 'DATA_SCIENCE_ML', label: 'DATA SCIENCE & ML' },
